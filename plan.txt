@@ -1,0 +1,13 @@
+[.] Create directory structure
+[.] Create a NPM project and install all dependencies
+    - Dependencies
+        - Express
+        - ejs express-ejs-layouts
+    - Dev Dependencies
+        - nodemon
+[.] Create Express server - Create server.js file
+[.] Create Home Page using HTML and CSS
+    - include tailwind css
+[.] Create Cart page
+    - order summary section
+    - empty cart section
