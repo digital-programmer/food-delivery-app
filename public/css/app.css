@@ -55,3 +55,15 @@ section.cart .amount {
 input.address {
   height: 100px;
 }
+
+section.register, section.login {
+  background: #f8f8f8;
+  min-height: calc(100vh - 86px);
+}
+section.register a, section.login a {
+  transition: all 0.3s ease-in-out;
+  color: #fe5f1e;
+}
+section.register a:hover, section.login a:hover {
+  color: #b23301;
+}

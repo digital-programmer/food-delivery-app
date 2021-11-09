@@ -58,3 +58,16 @@ section.cart {
 input.address {
     height: 100px;
 }
+
+section.register, section.login {
+    background: $secondary;
+    min-height: calc(100vh - 86px);
+
+    a {
+        transition: $smooth;
+        color: $primary;
+        &:hover {
+            color: $primary-hover;
+        }
+    }
+}
