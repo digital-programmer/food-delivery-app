@@ -7,6 +7,7 @@ function init_routes(app) {
     app.get('/cart', cartController().index);
     app.get('/register', authController().register);
     app.get('/login', authController().login);
+    app.post('/update-cart', cartController().update);
 }
 
 module.exports = init_routes;

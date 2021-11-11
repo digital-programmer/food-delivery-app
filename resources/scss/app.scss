@@ -1,4 +1,6 @@
 @import './_variables.scss';
+@import '~noty/src/noty.scss';
+@import '~noty/src/themes/sunset.scss';
 
 body {
     font-family: 'Lato', 'sans-serif';
@@ -8,6 +10,7 @@ body {
 
 nav li:last-child a {
     background: $primary;
+
     &:hover {
         background: $primary-hover;
     }
@@ -16,6 +19,7 @@ nav li:last-child a {
 // Keep transition time constant throughout the app
 nav li a {
     transition: $smooth;
+
     &:hover {
         color: $primary;
     }
@@ -33,16 +37,22 @@ section.hero {
     border: 2px solid $primary;
     color: $primary;
     transition: $smooth;
+
     &:hover {
         background: $primary;
         border-color: $pure;
         color: $pure;
+    }
+
+    &:focus {
+        outline: none;
     }
 }
 
 .btn-primary {
     background: $primary;
     transition: $smooth;
+
     &:hover {
         background: $primary-hover;
     }
@@ -50,6 +60,7 @@ section.hero {
 
 section.cart {
     background: $secondary;
+
     .amount {
         color: $primary;
     }
@@ -59,15 +70,22 @@ input.address {
     height: 100px;
 }
 
-section.register, section.login {
+section.register,
+section.login {
     background: $secondary;
     min-height: calc(100vh - 86px);
 
     a {
         transition: $smooth;
         color: $primary;
+
         &:hover {
             color: $primary-hover;
         }
     }
+}
+
+.noty_theme__sunset {
+    border-radius: 50px !important;
+    padding-left: 8px !important;
 }
