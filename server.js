@@ -9,6 +9,10 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const flash = require('express-flash');
 const MongoDbStore = require('connect-mongo');
+const passport = require('passport');
+var cookieParser = require('cookie-parser');
+// Passport config
+const passport_init = require('./app/config/passport');
 
 
 // Database connection
@@ -20,6 +24,12 @@ connection.once("open", () => {
     console.log("Connected to database :: MongoDB");
 })
 
+
+
+passport_init(passport);
+app.use(cookieParser());
+
+
 // Session store
 const mongoStore = MongoDbStore.create({
     mongoUrl: url,
@@ -29,6 +39,8 @@ const mongoStore = MongoDbStore.create({
     console.log("connect-mongodb setup not ok");
     console.log(err);
 });
+
+
 
 // Session config
 app.use(session({
@@ -42,14 +54,18 @@ app.use(session({
 }))
 
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // assets
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Global middleware
 app.use((req, res, next) => {
     res.locals.session = req.session;
+    res.locals.user = req.user;
     next();
 })
 
