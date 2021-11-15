@@ -362,3 +362,11 @@ section.login a:hover {
   border-radius: 50px !important;
   padding-left: 8px !important;
 }
+
+a.link {
+  color: #fe5f1e;
+  transition: all 0.3s ease-in-out;
+}
+a.link:hover {
+  color: #b23301;
+}

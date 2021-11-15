@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Noty from 'noty';
+import { initAdmin } from './admin';
 
 let add_to_cart = document.querySelectorAll('.add-to-cart');
 let cart_counter = document.querySelector("#cart-counter");
@@ -32,4 +33,13 @@ add_to_cart.forEach((btn) => {
         let pizza = JSON.parse(btn.dataset.pizza);
         updateCart(pizza);
     })
-})
+});
+
+const alertMsg = document.getElementById('success-alert');
+if (alertMsg) {
+    setTimeout(() => {
+        alertMsg.remove();
+    }, 2000);
+}
+
+initAdmin();
