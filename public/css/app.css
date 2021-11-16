@@ -463,3 +463,9 @@ a.link:hover {
 .status-box ul li.current span::after {
   background: #fe5f1e;
 }
+
+.status-box ul li small {
+  float: right;
+  font-size: 14px;
+  margin-top: 8px;
+}

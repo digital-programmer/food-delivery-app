@@ -13,6 +13,7 @@ const passport = require('passport');
 var cookieParser = require('cookie-parser');
 // Passport config
 const passport_init = require('./app/config/passport');
+const Emitter = require('events');
 
 
 // Database connection
@@ -40,7 +41,9 @@ const mongoStore = MongoDbStore.create({
     console.log(err);
 });
 
-
+// Event emitter
+const eventEmitter = new Emitter();
+app.set('eventEmitter', eventEmitter);
 
 // Session config
 app.use(session({
@@ -77,6 +80,23 @@ app.set("view engine", "ejs");
 
 require('./routes/web')(app);
 
-app.listen(PORT, (err) => {
+const server = app.listen(PORT, (err) => {
     console.log(`Server running on port ${PORT}`);
+});
+
+// socket
+const io = require('socket.io')(server);
+io.on('connection', (socket) => {
+    // Join 
+    socket.on('join', (roomName) => {
+        socket.join(roomName);
+    })
+})
+
+eventEmitter.on('orderUpdated', (data) => {
+    io.to(`order_${data.id}`).emit('orderUpdated', data);
+});
+
+eventEmitter.on('orderPlaced', (data) => {
+    io.to(`adminRoom`).emit('orderPlaced', data)
 });
